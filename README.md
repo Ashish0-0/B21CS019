@@ -176,6 +176,8 @@ Q13. The xv6 file system:
 
     The xv6 file system implementation is organized in 6 layers. The lowest layer reads and writes blocks on the IDE disk through the buffercache, which synchronizes access to disk blocks, making sure that only one kernel process at a time can edit the file system data stored in any particular block. The secondlayer allows higher layers to wrap updates to several blocks in a transaction, to ensure that the blocks are updated atomically .The third layer provides unnamed files, each represented using an inode and a sequence of blocks holding the file’s data. The fourth layer implements directories as aspecial kind of inode whose content is a sequence of directory entries, each of whichcontains a name and a reference to the named file’s inode. The fifth layer provides hierarchical path names like /usr/rtm/xv6/fs.c, using recursive lookup. The final layer abstracts many Unix resources (e.g., pipes, devices, files, etc.) using the file systeminterface, simplifying the lives of application programmers.
 
+    xv6 employs a hierarchical file system structure, similar to Unix, with directories, files, and inodes. Inodes are used to store metadata about files and their data block locations.
+
 Q14. System Calls:
 
     Definition: System calls provide an interface between user-level applications and the operating system kernel.
@@ -218,8 +220,7 @@ Q16. Three Essential Shell Commands in XV6:
         Usage: mkdir [directory_name]
         Example: mkdir new_folder to create a directory named "new_folder".
 
-Q17. 
-In XV6, process synchronization is crucial for managing shared resources among concurrently executing processes, ensuring data integrity and preventing race conditions. Synchronization becomes essential when multiple processes or threads access shared resources concurrently, potentially leading to inconsistencies or conflicts.
+Q17. In XV6, process synchronization is crucial for managing shared resources among concurrently executing processes, ensuring data integrity and preventing race conditions. Synchronization becomes essential when multiple processes or threads access shared resources concurrently, potentially leading to inconsistencies or conflicts.
 Importance of Process Synchronization:
 
     Preventing Data Corruption: Synchronization mechanisms help avoid data corruption that might arise when multiple processes access and modify shared data simultaneously.
